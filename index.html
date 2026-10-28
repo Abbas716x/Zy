@@ -101,7 +101,7 @@
         </div>
 
         <div class="text-[11px] text-gray-500 text-center border-t border-blue-900/30 pt-4 num-font">
-            MAZAJ VAPE POS v4.0 Pro
+            MAZAJ VAPE POS v4.2 Pro
         </div>
     </aside>
 
@@ -111,13 +111,13 @@
         <!-- SECTION 1: QUICK POS -->
         <section id="tab-pos" class="space-y-5">
             <!-- Hero Vape Image Banner -->
-            <div class="relative w-full h-36 rounded-2xl overflow-hidden glass-card border border-blue-500/30 flex items-center justify-between p-4 shadow-xl">
-                <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80" alt="Vape Cyberpunk Neon" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity">
-                <div class="absolute inset-0 bg-gradient-to-r from-[#030407] via-[#030407]/70 to-transparent"></div>
-                <div class="relative z-10 space-y-1">
-                    <span class="text-[11px] font-extrabold text-[#D4FF24] uppercase tracking-widest bg-[#D4FF24]/10 px-2.5 py-0.5 rounded-full border border-[#D4FF24]/30">PREMIUM VAPE SHOP</span>
-                    <h2 class="text-xl font-black text-white tracking-wide num-font">MAZAJ VAPE</h2>
-                    <p class="text-xs text-gray-300 font-semibold">كاشير المبيعات والإيرادات السريعة</p>
+            <div class="relative w-full h-40 rounded-2xl overflow-hidden glass-card border border-blue-500/30 flex items-end p-4 shadow-xl">
+                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=800&q=80" alt="Vape Device Neon" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#030407] via-[#030407]/40 to-transparent"></div>
+                <div class="relative z-10 space-y-0.5">
+                    <span class="text-[10px] font-extrabold text-[#D4FF24] uppercase tracking-widest bg-[#D4FF24]/10 px-2.5 py-0.5 rounded-full border border-[#D4FF24]/30">MAZAJ VAPE SHOP</span>
+                    <h2 class="text-2xl font-black text-white tracking-wide num-font">MAZAJ VAPE</h2>
+                    <p class="text-xs text-gray-300 font-semibold">نظام مبيعات الفيب السريع</p>
                 </div>
             </div>
 
@@ -134,29 +134,45 @@
                 </div>
             </div>
 
-            <!-- Price Input -->
-            <div class="glass-card p-4.5 rounded-2xl space-y-3 lime-glow transition-all">
-                <div class="flex justify-between items-center text-xs text-blue-300/80 font-bold">
-                    <span>2. اكتب السعر مباشرة:</span>
-                </div>
+            <!-- Price Input Section -->
+            <div class="space-y-3">
+                <label class="text-xs text-blue-300/80 font-bold block">2. حدد أو اكتب السعر المباشر:</label>
                 
-                <div class="relative flex items-center bg-[#030407]/90 border border-blue-500/30 rounded-xl px-3 py-1">
-                    <input type="number" id="price-input" placeholder="0" autofocus min="1" step="any" dir="ltr"
-                        class="w-full bg-transparent text-[#D4FF24] text-2xl font-extrabold num-font focus:outline-none py-2 text-left">
-                    <span class="text-gray-400 font-bold text-sm pr-2 border-r border-gray-800 shrink-0">د.ع</span>
+                <!-- Direct Input Field -->
+                <div class="glass-card p-3 rounded-2xl lime-glow transition-all">
+                    <div class="relative flex items-center bg-[#030407]/90 border border-blue-500/30 rounded-xl px-3 py-1">
+                        <input type="number" id="price-input" placeholder="0" autofocus min="1" step="any" dir="ltr"
+                            class="w-full bg-transparent text-[#D4FF24] text-2xl font-extrabold num-font focus:outline-none py-2 text-left">
+                        <span class="text-gray-400 font-bold text-sm pr-2 border-r border-gray-800 shrink-0">د.ع</span>
+                    </div>
                 </div>
 
-                <!-- Shortcuts: 5 - 15 - 18 - 20 -->
-                <div class="grid grid-cols-4 gap-2 pt-1" dir="ltr">
-                    <button type="button" onclick="app.setQuickPrice(5)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">5,000</button>
-                    <button type="button" onclick="app.setQuickPrice(15)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">15,000</button>
-                    <button type="button" onclick="app.setQuickPrice(18)" class="py-2.5 bg-[#D4FF24]/10 text-[#D4FF24] border border-[#D4FF24]/40 rounded-xl text-xs font-bold num-font transition active:scale-95 shadow-md">18,000</button>
-                    <button type="button" onclick="app.setQuickPrice(20)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">20,000</button>
+                <!-- Big Square Price Cards -->
+                <div class="grid grid-cols-2 gap-3" dir="ltr">
+                    <button type="button" onclick="app.setQuickPrice(5)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">5,000</span>
+                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                    </button>
+                    
+                    <button type="button" onclick="app.setQuickPrice(15)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">15,000</span>
+                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                    </button>
+
+                    <button type="button" onclick="app.setQuickPrice(18)" class="glass-card-lime hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 shadow-xl">
+                        <span class="text-2xl font-black text-[#D4FF24] num-font">18,000</span>
+                        <span class="text-[11px] font-bold text-emerald-300">السعر الأكثر بيعاً</span>
+                    </button>
+
+                    <button type="button" onclick="app.setQuickPrice(20)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">20,000</span>
+                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Submit Button -->
-            <button onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-xl shadow-[#D4FF24]/20 active:scale-95 transition flex items-center justify-center gap-2.5">
+            <button onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-xl shadow-[#D4FF24]/20 active:scale-95 transition flex items-center justify-center gap-2.5 mt-2">
                 <i class="fa-solid fa-circle-check text-xl"></i> إتمام البيع والتسجيل
             </button>
         </section>
@@ -217,13 +233,10 @@
 
     </main>
 
-    <!-- Persistent Toast Notification System -->
-    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#D4FF24] text-[#030407] font-extrabold px-5 py-3.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-3 border border-black/20 max-w-[90vw]">
+    <!-- Auto-Hiding Toast Notification System (1 Second Duration) -->
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#D4FF24] text-[#030407] font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-3 border border-black/20 max-w-[90vw]">
         <i class="fa-solid fa-circle-check text-lg shrink-0"></i> 
         <span id="toast-msg" class="text-sm truncate">تم الحفظ بنجاح</span>
-        <button onclick="app.hideToast()" aria-label="إغلاق التنبيه" class="w-6 h-6 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center text-xs text-[#030407] shrink-0 active:scale-90 transition">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
     </div>
 
     <!-- Application Script Engine -->
@@ -231,11 +244,11 @@
         class MazajVapePOS {
             constructor() {
                 this.selectedCategory = 'سحبة';
+                this.toastTimeout = null;
                 this.data = this.loadData();
                 this.init();
             }
 
-            // Sanitize string data for protection against XSS
             sanitize(str) {
                 const temp = document.createElement('div');
                 temp.textContent = str;
@@ -407,13 +420,18 @@
                 const toast = document.getElementById('toast');
                 const msgEl = document.getElementById('toast-msg');
                 
-                msgEl.innerText = msg;
-                toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-5 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-3 border border-black/20 opacity-100 scale-100 pointer-events-auto max-w-[90vw]`;
-            }
+                if (this.toastTimeout) {
+                    clearTimeout(this.toastTimeout);
+                }
 
-            hideToast() {
-                const toast = document.getElementById('toast');
-                toast.classList.add('opacity-0', 'pointer-events-none');
+                msgEl.innerText = msg;
+                toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-3 border border-black/20 opacity-100 scale-100 pointer-events-auto max-w-[90vw]`;
+
+                // Auto-hide after 1 second (1000ms)
+                this.toastTimeout = setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'scale-100');
+                    toast.classList.add('opacity-0', 'pointer-events-none');
+                }, 1000);
             }
         }
 
