@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAPE POS | نظام المبيعات الفاخر</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo & Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-midnight: #030407;
+            --cobalt-blue: #1558C9;
+            --acid-lime: #D4FF24;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-midnight);
+            color: #E2E8F0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(21, 88, 201, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 255, 36, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .num-font { font-family: 'Orbitron', monospace; }
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(10, 14, 26, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(21, 88, 201, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .glass-card-lime {
+            background: rgba(10, 14, 26, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 255, 36, 0.3);
+            box-shadow: 0 0 20px rgba(212, 255, 36, 0.08);
+        }
+
+        .lime-glow:focus-within {
+            border-color: #D4FF24;
+            box-shadow: 0 0 20px rgba(212, 255, 36, 0.25);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #030407; }
+        ::-webkit-scrollbar-thumb { background: #1558C9; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="glass-card sticky top-0 z-30 px-4 py-3.5 flex items-center justify-between border-b border-blue-900/30">
+        <div class="flex items-center gap-3">
+            <button id="menu-btn" class="w-10 h-10 rounded-xl bg-blue-950/60 hover:bg-blue-900/50 border border-blue-500/30 flex items-center justify-center text-[#D4FF24] text-xl transition active:scale-95 shadow-lg">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="font-extrabold text-lg text-white tracking-wide">VAPE <span class="text-[#D4FF24]">SYSTEM</span></h1>
+        </div>
+        
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-950/40 border border-blue-500/20">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#D4FF24] animate-pulse"></span>
+            <span class="text-xs text-blue-200 font-bold">متصل سحابياً</span>
+        </div>
+    </header>
+
+    <!-- Sidebar Drawer -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden transition-opacity duration-300"></div>
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-72 glass-card border-l border-blue-500/30 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-5">
+        <div>
+            <div class="flex items-center justify-between pb-6 mb-6 border-b border-blue-900/30">
+                <h2 class="text-base font-black text-[#D4FF24] flex items-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> القائمة الرئيسية
+                </h2>
+                <button id="close-sidebar-btn" class="text-gray-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <nav class="space-y-2.5">
+                <button onclick="app.switchTab('pos')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg" data-tab="pos">
+                    <i class="fa-solid fa-cash-register w-6 text-center"></i> شاشة البيع السريع
+                </button>
+                <button onclick="app.switchTab('revenue')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent" data-tab="revenue">
+                    <i class="fa-solid fa-chart-line w-6 text-center text-[#1558C9]"></i> تقارير الإيرادات
+                </button>
+                <button onclick="app.switchTab('invoices')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent" data-tab="invoices">
+                    <i class="fa-solid fa-receipt w-6 text-center text-[#1558C9]"></i> سجل الفواتير
+                </button>
+            </nav>
+        </div>
+
+        <div class="text-[11px] text-gray-500 text-center border-t border-blue-900/30 pt-4">
+            Midnight Black & Acid Lime Edition v3.0
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 p-4 max-w-lg mx-auto w-full space-y-6">
+
+        <!-- SECTION 1: QUICK POS -->
+        <section id="tab-pos" class="space-y-5">
+            <!-- Categories -->
+            <div class="space-y-2.5">
+                <label class="text-xs text-blue-300/80 font-bold block">1. اختر نوع القطعة:</label>
+                <div class="grid grid-cols-3 gap-2.5">
+                    <button type="button" onclick="app.selectCategory('سحبة')" class="cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95" data-cat="سحبة">سحبة</button>
+                    <button type="button" onclick="app.selectCategory('كاترج')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="كاترج">كاترج</button>
+                    <button type="button" onclick="app.selectCategory('بطارية')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="بطارية">بطارية</button>
+                    <button type="button" onclick="app.selectCategory('جوز/نكهة')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="جوز/نكهة">جوز/نكهة</button>
+                    <button type="button" onclick="app.selectCategory('كويل')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="كويل">كويل</button>
+                    <button type="button" onclick="app.selectCategory('جهاز')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="جهاز">جهاز</button>
+                </div>
+            </div>
+
+            <!-- Price Input -->
+            <div class="glass-card p-4.5 rounded-2xl space-y-3 lime-glow transition-all">
+                <label for="price-input" class="text-xs text-blue-300/80 font-bold flex justify-between">
+                    <span>2. اكتب السعر مباشرة:</span>
+                    <span class="text-[#D4FF24] font-semibold">مثال: 18 = 18,000 د.ع</span>
+                </label>
+                
+                <div class="relative flex items-center">
+                    <input type="number" id="price-input" placeholder="0" autofocus min="1" step="any"
+                        class="w-full bg-[#030407]/80 border border-blue-500/30 text-[#D4FF24] text-3xl font-extrabold rounded-xl py-3.5 px-4 text-left num-font focus:outline-none transition">
+                    <span class="absolute right-4 text-gray-400 font-bold text-sm pointer-events-none">د.ع</span>
+                </div>
+
+                <!-- Shortcuts -->
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="app.setQuickPrice(3)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">3,000</button>
+                    <button type="button" onclick="app.setQuickPrice(6)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">6,000</button>
+                    <button type="button" onclick="app.setQuickPrice(15)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">15,000</button>
+                    <button type="button" onclick="app.setQuickPrice(18)" class="flex-1 py-2 bg-[#D4FF24]/10 text-[#D4FF24] border border-[#D4FF24]/40 rounded-xl text-xs font-bold num-font transition active:scale-95 shadow-md">18,000</button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-xl shadow-[#D4FF24]/20 active:scale-95 transition flex items-center justify-center gap-2.5">
+                <i class="fa-solid fa-circle-check text-xl"></i> إتمام البيع والتسجيل
+            </button>
+        </section>
+
+        <!-- SECTION 2: REVENUE -->
+        <section id="tab-revenue" class="space-y-4 hidden">
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-pie text-[#D4FF24]"></i> ملخص الإيرادات المالية
+            </h2>
+
+            <div class="grid grid-cols-1 gap-3.5">
+                <div class="glass-card-lime p-4.5 rounded-2xl border-r-4 border-r-[#D4FF24]">
+                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد مبيعات اليوم:</span>
+                    <div class="text-3xl font-black text-[#D4FF24] num-font" id="rev-today">0 د.ع</div>
+                </div>
+
+                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-[#1558C9]">
+                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد يوم الأمس (المرحل):</span>
+                    <div class="text-2xl font-bold text-blue-300 num-font" id="rev-yesterday">0 د.ع</div>
+                </div>
+
+                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-purple-500">
+                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد الشهر الحالي التراكمي:</span>
+                    <div class="text-2xl font-bold text-purple-300 num-font" id="rev-month">0 د.ع</div>
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="app.confirmResetDay()" class="w-full py-3.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-solid fa-rotate text-lg"></i> تصفير اليوم وترحيل الإيراد للشهر
+                </button>
+                <p class="text-[11px] text-gray-500 text-center mt-2">تصفير إيراد اليوم ونقله للأمس وإضافته كلياً للحساب الشهري</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: INVOICES -->
+        <section id="tab-invoices" class="space-y-4 hidden">
+            <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-clock-history text-[#D4FF24]"></i> سجل الفواتير والمبيعات
+                </h2>
+                <span id="invoice-count" class="text-xs font-bold text-blue-200 bg-blue-950/60 border border-blue-500/30 px-3 py-1 rounded-full">0 فاتورة</span>
+            </div>
+
+            <div id="invoices-list" class="space-y-2.5 max-h-[70vh] overflow-y-auto pr-1">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#D4FF24] text-[#030407] font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2.5">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">تم الحفظ بنجاح</span>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        class VapePOSApp {
+            constructor() {
+                this.selectedCategory = 'سحبة';
+                this.data = this.loadData();
+                this.initUI();
+            }
+
+            loadData() {
+                const defaultData = { today: 0, yesterday: 0, month: 0, invoices: [] };
+                const saved = localStorage.getItem('vape_pos_db_v3');
+                return saved ? JSON.parse(saved) : defaultData;
+            }
+
+            saveData() {
+                localStorage.setItem('vape_pos_db_v3', JSON.stringify(this.data));
+                this.updateRevenueUI();
+                this.renderInvoices();
+            }
+
+            initUI() {
+                this.bindEvents();
+                this.updateRevenueUI();
+                this.renderInvoices();
+            }
+
+            bindEvents() {
+                const menuBtn = document.getElementById('menu-btn');
+                const closeBtn = document.getElementById('close-sidebar-btn');
+                const overlay = document.getElementById('sidebar-overlay');
+                const sidebar = document.getElementById('sidebar');
+
+                const openMenu = () => {
+                    sidebar.classList.remove('translate-x-full');
+                    overlay.classList.remove('hidden');
+                };
+                const closeMenu = () => {
+                    sidebar.classList.add('translate-x-full');
+                    overlay.classList.add('hidden');
+                };
+
+                menuBtn.addEventListener('click', openMenu);
+                closeBtn.addEventListener('click', closeMenu);
+                overlay.addEventListener('click', closeMenu);
+
+                document.getElementById('price-input').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') this.processSale();
+                });
+            }
+
+            switchTab(tabName) {
+                document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+                document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    if(btn.getAttribute('data-tab') === tabName) {
+                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg";
+                    } else {
+                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent";
+                    }
+                });
+
+                document.getElementById('sidebar-overlay').click();
+            }
+
+            selectCategory(cat) {
+                this.selectedCategory = cat;
+                document.querySelectorAll('.cat-btn').forEach(btn => {
+                    if(btn.getAttribute('data-cat') === cat) {
+                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95";
+                    } else {
+                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50";
+                    }
+                });
+            }
+
+            setQuickPrice(val) {
+                document.getElementById('price-input').value = val;
+            }
+
+            parseAmount(inputVal) {
+                let num = parseFloat(inputVal);
+                if (isNaN(num) || num <= 0) return 0;
+                if (num < 1000) num = num * 1000;
+                return num;
+            }
+
+            processSale() {
+                const inputEl = document.getElementById('price-input');
+                const finalAmount = this.parseAmount(inputEl.value);
+
+                if (finalAmount <= 0) {
+                    this.showToast('يرجى كتابة السعر أولاً', 'rose');
+                    return;
+                }
+
+                const newInvoice = {
+                    id: Date.now(),
+                    category: this.selectedCategory,
+                    amount: finalAmount,
+                    time: new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' }),
+                    date: new Date().toLocaleDateString('ar-IQ')
+                };
+
+                this.data.today += finalAmount;
+                this.data.month += finalAmount;
+                this.data.invoices.unshift(newInvoice);
+
+                this.saveData();
+                inputEl.value = '';
+                this.showToast(`تم بيع ${this.selectedCategory} بـ ${finalAmount.toLocaleString()} د.ع`);
+            }
+
+            confirmResetDay() {
+                if (this.data.today === 0) {
+                    this.showToast('إيراد اليوم مصفّر بالفعل', 'rose');
+                    return;
+                }
+
+                if (confirm('هل أنت تأكد من تصفير إيراد اليوم وترحيله للشهر؟')) {
+                    this.data.yesterday = this.data.today;
+                    this.data.today = 0;
+                    this.saveData();
+                    this.showToast('تم تصفير اليوم وترحيل الحسابات');
+                }
+            }
+
+            updateRevenueUI() {
+                document.getElementById('rev-today').innerText = `${this.data.today.toLocaleString()} د.ع`;
+                document.getElementById('rev-yesterday').innerText = `${this.data.yesterday.toLocaleString()} د.ع`;
+                document.getElementById('rev-month').innerText = `${this.data.month.toLocaleString()} د.ع`;
+            }
+
+            renderInvoices() {
+                const container = document.getElementById('invoices-list');
+                const countBadge = document.getElementById('invoice-count');
+                
+                countBadge.innerText = `${this.data.invoices.length} فاتورة`;
+
+                if (this.data.invoices.length === 0) {
+                    container.innerHTML = `<div class="text-center py-10 text-gray-500 text-sm">لا توجد فواتير مسجلة بعد</div>`;
+                    return;
+                }
+
+                container.innerHTML = this.data.invoices.map(inv => `
+                    <div class="glass-card p-3.5 rounded-2xl flex items-center justify-between border border-blue-500/20 hover:border-[#D4FF24]/40 transition">
+                        <div>
+                            <div class="font-bold text-white text-sm flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#D4FF24]"></span>
+                                ${inv.category}
+                            </div>
+                            <div class="text-[11px] text-gray-400 font-semibold mt-0.5">${inv.time} - ${inv.date}</div>
+                        </div>
+                        <div class="text-[#D4FF24] font-extrabold num-font text-base">
+                            +${inv.amount.toLocaleString()} د.ع
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            showToast(msg, color = 'lime') {
+                const toast = document.getElementById('toast');
+                const msgEl = document.getElementById('toast-msg');
+                
+                msgEl.innerText = msg;
+                toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-2.5 opacity-150 scale-100`;
+
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'pointer-events-none');
+                }, 2500);
+            }
+        }
+
+        const app = new VapePOSApp();
+    </script>
+</body>
+</html>
