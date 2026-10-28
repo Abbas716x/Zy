@@ -54,6 +54,7 @@
         .touch-btn {
             touch-action: manipulation;
             cursor: pointer;
+            -webkit-user-select: none;
         }
 
         /* Custom scrollbar */
@@ -68,7 +69,7 @@
     <header class="glass-card sticky top-0 z-30 px-4 py-3.5 flex items-center justify-between border-b border-blue-900/30">
         <div class="flex items-center gap-3">
             <button id="menu-btn" aria-label="فتح القائمة الجانبية" class="w-10 h-10 rounded-xl bg-blue-950/60 hover:bg-blue-900/50 border border-blue-500/30 flex items-center justify-center text-[#D4FF24] text-xl transition active:scale-95 shadow-lg touch-btn">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars pointer-events-none"></i>
             </button>
             <h1 class="font-black text-xl text-white tracking-wider num-font">MAZAJ <span class="text-[#D4FF24]">VAPE</span></h1>
         </div>
@@ -106,7 +107,7 @@
         </div>
 
         <div class="text-[11px] text-gray-500 text-center border-t border-blue-900/30 pt-4 num-font">
-            MAZAJ VAPE POS v4.5 Pro
+            MAZAJ VAPE POS v5.0 Master
         </div>
     </aside>
 
@@ -115,10 +116,43 @@
 
         <!-- SECTION 1: QUICK POS -->
         <section id="tab-pos" class="space-y-5">
-            <!-- Hero Vape Smoke Banner -->
-            <div class="relative w-full h-40 rounded-2xl overflow-hidden glass-card border border-blue-500/30 flex items-end p-4 shadow-xl">
-                <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=800&q=80" alt="Vape Smoke Dark Cyberpunk" class="absolute inset-0 w-full h-full object-cover opacity-60">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#030407] via-[#030407]/40 to-transparent"></div>
+            <!-- Native Cyberpunk Vape Banner (Pure SVG Vector) -->
+            <div class="relative w-full h-40 rounded-2xl overflow-hidden glass-card border border-blue-500/30 flex items-end p-4 shadow-2xl">
+                <!-- SVG Smoke & Neon Art Background -->
+                <svg class="absolute inset-0 w-full h-full object-cover opacity-80" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="800" height="400" fill="#030407"/>
+                    <!-- Neon Smoke Waves -->
+                    <path d="M-50 300C100 150 250 380 400 220C550 60 700 320 850 180V400H-50V300Z" fill="url(#smoke-grad-1)" opacity="0.4"/>
+                    <path d="M-100 180C150 320 300 80 500 240C700 400 750 120 900 260V400H-100V180Z" fill="url(#smoke-grad-2)" opacity="0.3"/>
+                    
+                    <!-- Vape Mod Graphic -->
+                    <g transform="translate(560, 60)">
+                        <!-- Device Body -->
+                        <rect x="50" y="80" width="90" height="180" rx="16" fill="#0A0E1A" stroke="#1558C9" stroke-width="4"/>
+                        <!-- Neon Accent Line -->
+                        <line x1="65" y1="100" x2="65" y2="240" stroke="#D4FF24" stroke-width="6" stroke-linecap="round"/>
+                        <!-- Tank / Pod -->
+                        <rect x="75" y="30" width="40" height="50" rx="6" fill="#1558C9" opacity="0.6" stroke="#D4FF24" stroke-width="2"/>
+                        <!-- Drip Tip -->
+                        <rect x="88" y="10" width="14" height="20" rx="4" fill="#D4FF24"/>
+                        <!-- Smoke Rings -->
+                        <circle cx="95" cy="-10" r="15" stroke="#D4FF24" stroke-width="2" opacity="0.4"/>
+                        <circle cx="110" cy="-35" r="25" stroke="#1558C9" stroke-width="3" opacity="0.3"/>
+                    </g>
+
+                    <defs>
+                        <linearGradient id="smoke-grad-1" x1="0" y1="0" x2="800" y2="400" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#1558C9"/>
+                            <stop offset="1" stop-color="#D4FF24"/>
+                        </linearGradient>
+                        <linearGradient id="smoke-grad-2" x1="800" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#D4FF24"/>
+                            <stop offset="1" stop-color="#1558C9"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#030407] via-[#030407]/30 to-transparent"></div>
                 <div class="relative z-10 space-y-0.5">
                     <span class="text-[10px] font-extrabold text-[#D4FF24] uppercase tracking-widest bg-[#D4FF24]/10 px-2.5 py-0.5 rounded-full border border-[#D4FF24]/30">MAZAJ VAPE SHOP</span>
                     <h2 class="text-2xl font-black text-white tracking-wide num-font">MAZAJ VAPE</h2>
@@ -155,31 +189,32 @@
                 <!-- Big Square Price Cards -->
                 <div class="grid grid-cols-2 gap-3" dir="ltr">
                     <button type="button" onclick="app.setQuickPrice(5)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
-                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">5,000</span>
-                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font pointer-events-none">5,000</span>
+                        <span class="text-[11px] font-bold text-gray-400 pointer-events-none">دينار عراقي</span>
                     </button>
                     
                     <button type="button" onclick="app.setQuickPrice(15)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
-                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">15,000</span>
-                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font pointer-events-none">15,000</span>
+                        <span class="text-[11px] font-bold text-gray-400 pointer-events-none">دينار عراقي</span>
                     </button>
 
                     <button type="button" onclick="app.setQuickPrice(18)" class="glass-card-lime hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 shadow-xl touch-btn">
-                        <span class="text-2xl font-black text-[#D4FF24] num-font">18,000</span>
-                        <span class="text-[11px] font-bold text-emerald-300">السعر الأكثر بيعاً</span>
+                        <span class="text-2xl font-black text-[#D4FF24] num-font pointer-events-none">18,000</span>
+                        <span class="text-[11px] font-bold text-emerald-300 pointer-events-none">السعر الأكثر بيعاً</span>
                     </button>
 
                     <button type="button" onclick="app.setQuickPrice(20)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
-                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">20,000</span>
-                        <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
+                        <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font pointer-events-none">20,000</span>
+                        <span class="text-[11px] font-bold text-gray-400 pointer-events-none">دينار عراقي</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Full-Width Clickable Submit Button -->
-            <div class="relative z-20 pt-2">
-                <button type="button" id="submit-sale-btn" onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-2xl shadow-[#D4FF24]/30 active:scale-95 transition flex items-center justify-center gap-2.5 touch-btn">
-                    <i class="fa-solid fa-circle-check text-xl"></i> إتمام البيع والتسجيل
+            <!-- Full-Width Responsive Instant Submit Button -->
+            <div class="relative z-30 pt-2">
+                <button type="button" id="submit-sale-btn" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-2xl shadow-[#D4FF24]/30 active:scale-95 transition flex items-center justify-center gap-2.5 touch-btn">
+                    <i class="fa-solid fa-circle-check text-xl pointer-events-none"></i>
+                    <span class="pointer-events-none">إتمام البيع والتسجيل</span>
                 </button>
             </div>
         </section>
@@ -216,7 +251,7 @@
 
             <div class="pt-3">
                 <button onclick="app.confirmResetDay()" class="w-full py-3.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 touch-btn">
-                    <i class="fa-solid fa-rotate text-lg"></i> تصفير اليوم وترحيل الإيراد للشهر
+                    <i class="fa-solid fa-rotate text-lg pointer-events-none"></i> تصفير اليوم وترحيل الإيراد للشهر
                 </button>
                 <p class="text-[11px] text-gray-500 text-center mt-2">تصفير إيراد اليوم ونقله للأمس وإضافته كلياً للحساب الشهري</p>
             </div>
@@ -305,6 +340,15 @@
                 menuBtn.addEventListener('click', openMenu);
                 closeBtn.addEventListener('click', closeMenu);
                 overlay.addEventListener('click', closeMenu);
+
+                // Multi-touch & click binding for instant button response
+                const submitBtn = document.getElementById('submit-sale-btn');
+                const triggerSubmit = (e) => {
+                    e.preventDefault();
+                    this.processSale();
+                };
+                submitBtn.addEventListener('pointerdown', triggerSubmit);
+                submitBtn.addEventListener('click', (e) => e.preventDefault());
 
                 document.getElementById('price-input').addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') this.processSale();
