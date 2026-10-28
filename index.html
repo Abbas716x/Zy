@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAZAJ VAPE </title>
+    <title>MAZAJ VAPE | POS SYSTEM</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -51,6 +51,11 @@
             box-shadow: 0 0 20px rgba(212, 255, 36, 0.25);
         }
 
+        .touch-btn {
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #030407; }
@@ -62,7 +67,7 @@
     <!-- Header -->
     <header class="glass-card sticky top-0 z-30 px-4 py-3.5 flex items-center justify-between border-b border-blue-900/30">
         <div class="flex items-center gap-3">
-            <button id="menu-btn" aria-label="فتح القائمة الجانبية" class="w-10 h-10 rounded-xl bg-blue-950/60 hover:bg-blue-900/50 border border-blue-500/30 flex items-center justify-center text-[#D4FF24] text-xl transition active:scale-95 shadow-lg">
+            <button id="menu-btn" aria-label="فتح القائمة الجانبية" class="w-10 h-10 rounded-xl bg-blue-950/60 hover:bg-blue-900/50 border border-blue-500/30 flex items-center justify-center text-[#D4FF24] text-xl transition active:scale-95 shadow-lg touch-btn">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <h1 class="font-black text-xl text-white tracking-wider num-font">MAZAJ <span class="text-[#D4FF24]">VAPE</span></h1>
@@ -82,26 +87,26 @@
                 <h2 class="text-base font-black text-[#D4FF24] flex items-center gap-2">
                     <i class="fa-solid fa-bolt"></i> القائمة الرئيسية
                 </h2>
-                <button id="close-sidebar-btn" aria-label="إغلاق القائمة" class="text-gray-400 hover:text-white text-xl">
+                <button id="close-sidebar-btn" aria-label="إغلاق القائمة" class="text-gray-400 hover:text-white text-xl touch-btn">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <nav class="space-y-2.5">
-                <button onclick="app.switchTab('pos')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg" data-tab="pos">
+                <button onclick="app.switchTab('pos')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg touch-btn" data-tab="pos">
                     <i class="fa-solid fa-cash-register w-6 text-center"></i> شاشة البيع السريع
                 </button>
-                <button onclick="app.switchTab('revenue')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent" data-tab="revenue">
+                <button onclick="app.switchTab('revenue')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent touch-btn" data-tab="revenue">
                     <i class="fa-solid fa-chart-line w-6 text-center text-[#1558C9]"></i> تقارير الإيرادات
                 </button>
-                <button onclick="app.switchTab('invoices')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent" data-tab="invoices">
+                <button onclick="app.switchTab('invoices')" class="nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent touch-btn" data-tab="invoices">
                     <i class="fa-solid fa-receipt w-6 text-center text-[#1558C9]"></i> سجل الفواتير
                 </button>
             </nav>
         </div>
 
         <div class="text-[11px] text-gray-500 text-center border-t border-blue-900/30 pt-4 num-font">
-            MAZAJ VAPE POS v4.2 Pro
+            MAZAJ VAPE POS v4.5 Pro
         </div>
     </aside>
 
@@ -110,9 +115,9 @@
 
         <!-- SECTION 1: QUICK POS -->
         <section id="tab-pos" class="space-y-5">
-            <!-- Hero Vape Image Banner -->
+            <!-- Hero Vape Smoke Banner -->
             <div class="relative w-full h-40 rounded-2xl overflow-hidden glass-card border border-blue-500/30 flex items-end p-4 shadow-xl">
-                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=800&q=80" alt="Vape Device Neon" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=800&q=80" alt="Vape Smoke Dark Cyberpunk" class="absolute inset-0 w-full h-full object-cover opacity-60">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#030407] via-[#030407]/40 to-transparent"></div>
                 <div class="relative z-10 space-y-0.5">
                     <span class="text-[10px] font-extrabold text-[#D4FF24] uppercase tracking-widest bg-[#D4FF24]/10 px-2.5 py-0.5 rounded-full border border-[#D4FF24]/30">MAZAJ VAPE SHOP</span>
@@ -125,12 +130,12 @@
             <div class="space-y-2.5">
                 <label class="text-xs text-blue-300/80 font-bold block">1. اختر نوع القطعة:</label>
                 <div class="grid grid-cols-3 gap-2.5">
-                    <button type="button" onclick="app.selectCategory('سحبة')" class="cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95" data-cat="سحبة">سحبة</button>
-                    <button type="button" onclick="app.selectCategory('كاترج')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="كاترج">كاترج</button>
-                    <button type="button" onclick="app.selectCategory('بطارية')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="بطارية">بطارية</button>
-                    <button type="button" onclick="app.selectCategory('جوز/نكهة')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="جوز/نكهة">جوز/نكهة</button>
-                    <button type="button" onclick="app.selectCategory('كويل')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="كويل">كويل</button>
-                    <button type="button" onclick="app.selectCategory('جهاز')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50" data-cat="جهاز">جهاز</button>
+                    <button type="button" onclick="app.selectCategory('سحبة')" class="cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95 touch-btn" data-cat="سحبة">سحبة</button>
+                    <button type="button" onclick="app.selectCategory('كاترج')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn" data-cat="كاترج">كاترج</button>
+                    <button type="button" onclick="app.selectCategory('بطارية')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn" data-cat="بطارية">بطارية</button>
+                    <button type="button" onclick="app.selectCategory('جوز/نكهة')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn" data-cat="جوز/نكهة">جوز/نكهة</button>
+                    <button type="button" onclick="app.selectCategory('كويل')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn" data-cat="كويل">كويل</button>
+                    <button type="button" onclick="app.selectCategory('جهاز')" class="cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn" data-cat="جهاز">جهاز</button>
                 </div>
             </div>
 
@@ -149,32 +154,34 @@
 
                 <!-- Big Square Price Cards -->
                 <div class="grid grid-cols-2 gap-3" dir="ltr">
-                    <button type="button" onclick="app.setQuickPrice(5)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                    <button type="button" onclick="app.setQuickPrice(5)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
                         <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">5,000</span>
                         <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
                     </button>
                     
-                    <button type="button" onclick="app.setQuickPrice(15)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                    <button type="button" onclick="app.setQuickPrice(15)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
                         <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">15,000</span>
                         <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
                     </button>
 
-                    <button type="button" onclick="app.setQuickPrice(18)" class="glass-card-lime hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 shadow-xl">
+                    <button type="button" onclick="app.setQuickPrice(18)" class="glass-card-lime hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 shadow-xl touch-btn">
                         <span class="text-2xl font-black text-[#D4FF24] num-font">18,000</span>
                         <span class="text-[11px] font-bold text-emerald-300">السعر الأكثر بيعاً</span>
                     </button>
 
-                    <button type="button" onclick="app.setQuickPrice(20)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg">
+                    <button type="button" onclick="app.setQuickPrice(20)" class="glass-card hover:border-[#D4FF24] p-5 rounded-2xl flex flex-col items-center justify-center gap-1 transition active:scale-95 group shadow-lg touch-btn">
                         <span class="text-2xl font-black text-white group-hover:text-[#D4FF24] num-font">20,000</span>
                         <span class="text-[11px] font-bold text-gray-400">دينار عراقي</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Submit Button -->
-            <button onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-xl shadow-[#D4FF24]/20 active:scale-95 transition flex items-center justify-center gap-2.5 mt-2">
-                <i class="fa-solid fa-circle-check text-xl"></i> إتمام البيع والتسجيل
-            </button>
+            <!-- Full-Width Clickable Submit Button -->
+            <div class="relative z-20 pt-2">
+                <button type="button" id="submit-sale-btn" onclick="app.processSale()" class="w-full py-4 bg-[#D4FF24] hover:bg-[#bce416] text-[#030407] font-black text-lg rounded-2xl shadow-2xl shadow-[#D4FF24]/30 active:scale-95 transition flex items-center justify-center gap-2.5 touch-btn">
+                    <i class="fa-solid fa-circle-check text-xl"></i> إتمام البيع والتسجيل
+                </button>
+            </div>
         </section>
 
         <!-- SECTION 2: REVENUE -->
@@ -183,34 +190,32 @@
                 <i class="fa-solid fa-chart-pie text-[#D4FF24]"></i> ملخص الإيرادات المالية
             </h2>
 
-            <div class="grid grid-cols-1 gap-3.5">
-                <div class="glass-card-lime p-4.5 rounded-2xl border-r-4 border-r-[#D4FF24] overflow-hidden">
-                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد مبيعات اليوم:</span>
-                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
-                        <span class="text-2xl sm:text-3xl font-black text-[#D4FF24] num-font tracking-tight truncate" id="rev-today">0</span>
-                        <span class="text-xs font-bold text-[#D4FF24]/80 shrink-0">د.ع</span>
-                    </div>
+            <!-- Square Revenue Cards Grid -->
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Today Revenue Square Card -->
+                <div class="glass-card-lime p-5 rounded-2xl border-t-4 border-t-[#D4FF24] flex flex-col items-center justify-center text-center gap-2 col-span-2 sm:col-span-1 min-h-[140px]">
+                    <span class="text-xs text-gray-300 font-bold block">إيراد مبيعات اليوم</span>
+                    <div class="text-2xl sm:text-3xl font-black text-[#D4FF24] num-font tracking-tight" id="rev-today">0</div>
+                    <span class="text-[11px] font-extrabold text-emerald-400/90">دينار عراقي</span>
                 </div>
 
-                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-[#1558C9] overflow-hidden">
-                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد يوم الأمس (المرحل):</span>
-                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
-                        <span class="text-xl sm:text-2xl font-bold text-blue-300 num-font tracking-tight truncate" id="rev-yesterday">0</span>
-                        <span class="text-xs font-bold text-blue-300/80 shrink-0">د.ع</span>
-                    </div>
+                <!-- Yesterday Revenue Square Card -->
+                <div class="glass-card p-5 rounded-2xl border-t-4 border-t-[#1558C9] flex flex-col items-center justify-center text-center gap-2 min-h-[140px]">
+                    <span class="text-xs text-gray-300 font-bold block">إيراد الأمس</span>
+                    <div class="text-xl sm:text-2xl font-bold text-blue-300 num-font tracking-tight" id="rev-yesterday">0</div>
+                    <span class="text-[11px] font-bold text-blue-300/70">دينار عراقي</span>
                 </div>
 
-                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-purple-500 overflow-hidden">
-                    <span class="text-xs text-gray-400 font-bold block mb-1">إيراد الشهر الحالي التراكمي:</span>
-                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
-                        <span class="text-xl sm:text-2xl font-bold text-purple-300 num-font tracking-tight truncate" id="rev-month">0</span>
-                        <span class="text-xs font-bold text-purple-300/80 shrink-0">د.ع</span>
-                    </div>
+                <!-- Monthly Revenue Square Card -->
+                <div class="glass-card p-5 rounded-2xl border-t-4 border-t-purple-500 flex flex-col items-center justify-center text-center gap-2 min-h-[140px]">
+                    <span class="text-xs text-gray-300 font-bold block">إيراد الشهر</span>
+                    <div class="text-xl sm:text-2xl font-bold text-purple-300 num-font tracking-tight" id="rev-month">0</div>
+                    <span class="text-[11px] font-bold text-purple-300/70">دينار عراقي</span>
                 </div>
             </div>
 
-            <div class="pt-2">
-                <button onclick="app.confirmResetDay()" class="w-full py-3.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95">
+            <div class="pt-3">
+                <button onclick="app.confirmResetDay()" class="w-full py-3.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 touch-btn">
                     <i class="fa-solid fa-rotate text-lg"></i> تصفير اليوم وترحيل الإيراد للشهر
                 </button>
                 <p class="text-[11px] text-gray-500 text-center mt-2">تصفير إيراد اليوم ونقله للأمس وإضافته كلياً للحساب الشهري</p>
@@ -312,9 +317,9 @@
 
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     if(btn.getAttribute('data-tab') === tabName) {
-                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg";
+                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-[#D4FF24] bg-blue-600/20 border border-[#D4FF24]/40 shadow-lg touch-btn";
                     } else {
-                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent";
+                        btn.className = "nav-btn w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold transition text-right text-gray-300 hover:bg-blue-950/40 hover:text-white border border-transparent touch-btn";
                     }
                 });
 
@@ -325,9 +330,9 @@
                 this.selectedCategory = cat;
                 document.querySelectorAll('.cat-btn').forEach(btn => {
                     if(btn.getAttribute('data-cat') === cat) {
-                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95";
+                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card-lime text-[#D4FF24] font-extrabold text-center transition active:scale-95 touch-btn";
                     } else {
-                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50";
+                        btn.className = "cat-btn py-3 px-2 rounded-2xl glass-card text-gray-300 font-bold text-center transition active:scale-95 hover:border-blue-500/50 touch-btn";
                     }
                 });
             }
@@ -427,7 +432,7 @@
                 msgEl.innerText = msg;
                 toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-3 border border-black/20 opacity-100 scale-100 pointer-events-auto max-w-[90vw]`;
 
-                // Auto-hide after 1 second (1000ms)
+                // Auto-hide after 1 second
                 this.toastTimeout = setTimeout(() => {
                     toast.classList.remove('opacity-100', 'scale-100');
                     toast.classList.add('opacity-0', 'pointer-events-none');
