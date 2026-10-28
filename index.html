@@ -32,17 +32,17 @@
         
         /* Glassmorphism Effect */
         .glass-card {
-            background: rgba(10, 14, 26, 0.7);
+            background: rgba(10, 14, 26, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(21, 88, 201, 0.2);
+            border: 1px solid rgba(21, 88, 201, 0.25);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
         
         .glass-card-lime {
-            background: rgba(10, 14, 26, 0.75);
+            background: rgba(10, 14, 26, 0.8);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 255, 36, 0.3);
+            border: 1px solid rgba(212, 255, 36, 0.35);
             box-shadow: 0 0 20px rgba(212, 255, 36, 0.08);
         }
 
@@ -101,7 +101,7 @@
         </div>
 
         <div class="text-[11px] text-gray-500 text-center border-t border-blue-900/30 pt-4">
-            Midnight Black & Acid Lime Edition v3.0
+            Vape POS System v3.2
         </div>
     </aside>
 
@@ -125,23 +125,23 @@
 
             <!-- Price Input -->
             <div class="glass-card p-4.5 rounded-2xl space-y-3 lime-glow transition-all">
-                <label for="price-input" class="text-xs text-blue-300/80 font-bold flex justify-between">
+                <div class="flex justify-between items-center text-xs text-blue-300/80 font-bold">
                     <span>2. اكتب السعر مباشرة:</span>
                     <span class="text-[#D4FF24] font-semibold">مثال: 18 = 18,000 د.ع</span>
-                </label>
+                </div>
                 
-                <div class="relative flex items-center">
-                    <input type="number" id="price-input" placeholder="0" autofocus min="1" step="any"
-                        class="w-full bg-[#030407]/80 border border-blue-500/30 text-[#D4FF24] text-3xl font-extrabold rounded-xl py-3.5 px-4 text-left num-font focus:outline-none transition">
-                    <span class="absolute right-4 text-gray-400 font-bold text-sm pointer-events-none">د.ع</span>
+                <div class="relative flex items-center bg-[#030407]/90 border border-blue-500/30 rounded-xl px-3 py-1">
+                    <input type="number" id="price-input" placeholder="0" autofocus min="1" step="any" dir="ltr"
+                        class="w-full bg-transparent text-[#D4FF24] text-2xl font-extrabold num-font focus:outline-none py-2 text-left">
+                    <span class="text-gray-400 font-bold text-sm pr-2 border-r border-gray-800 shrink-0">د.ع</span>
                 </div>
 
                 <!-- Shortcuts -->
-                <div class="flex gap-2 pt-1">
-                    <button type="button" onclick="app.setQuickPrice(3)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">3,000</button>
-                    <button type="button" onclick="app.setQuickPrice(6)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">6,000</button>
-                    <button type="button" onclick="app.setQuickPrice(15)" class="flex-1 py-2 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">15,000</button>
-                    <button type="button" onclick="app.setQuickPrice(18)" class="flex-1 py-2 bg-[#D4FF24]/10 text-[#D4FF24] border border-[#D4FF24]/40 rounded-xl text-xs font-bold num-font transition active:scale-95 shadow-md">18,000</button>
+                <div class="grid grid-cols-4 gap-2 pt-1" dir="ltr">
+                    <button type="button" onclick="app.setQuickPrice(3)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">3,000</button>
+                    <button type="button" onclick="app.setQuickPrice(6)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">6,000</button>
+                    <button type="button" onclick="app.setQuickPrice(15)" class="py-2.5 glass-card hover:border-[#1558C9] text-gray-300 rounded-xl text-xs font-bold num-font transition active:scale-95">15,000</button>
+                    <button type="button" onclick="app.setQuickPrice(18)" class="py-2.5 bg-[#D4FF24]/10 text-[#D4FF24] border border-[#D4FF24]/40 rounded-xl text-xs font-bold num-font transition active:scale-95 shadow-md">18,000</button>
                 </div>
             </div>
 
@@ -158,19 +158,28 @@
             </h2>
 
             <div class="grid grid-cols-1 gap-3.5">
-                <div class="glass-card-lime p-4.5 rounded-2xl border-r-4 border-r-[#D4FF24]">
+                <div class="glass-card-lime p-4.5 rounded-2xl border-r-4 border-r-[#D4FF24] overflow-hidden">
                     <span class="text-xs text-gray-400 font-bold block mb-1">إيراد مبيعات اليوم:</span>
-                    <div class="text-3xl font-black text-[#D4FF24] num-font" id="rev-today">0 د.ع</div>
+                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
+                        <span class="text-2xl sm:text-3xl font-black text-[#D4FF24] num-font tracking-tight truncate" id="rev-today">0</span>
+                        <span class="text-xs font-bold text-[#D4FF24]/80 shrink-0">د.ع</span>
+                    </div>
                 </div>
 
-                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-[#1558C9]">
+                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-[#1558C9] overflow-hidden">
                     <span class="text-xs text-gray-400 font-bold block mb-1">إيراد يوم الأمس (المرحل):</span>
-                    <div class="text-2xl font-bold text-blue-300 num-font" id="rev-yesterday">0 د.ع</div>
+                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
+                        <span class="text-xl sm:text-2xl font-bold text-blue-300 num-font tracking-tight truncate" id="rev-yesterday">0</span>
+                        <span class="text-xs font-bold text-blue-300/80 shrink-0">د.ع</span>
+                    </div>
                 </div>
 
-                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-purple-500">
+                <div class="glass-card p-4.5 rounded-2xl border-r-4 border-r-purple-500 overflow-hidden">
                     <span class="text-xs text-gray-400 font-bold block mb-1">إيراد الشهر الحالي التراكمي:</span>
-                    <div class="text-2xl font-bold text-purple-300 num-font" id="rev-month">0 د.ع</div>
+                    <div class="flex items-baseline justify-between gap-2" dir="ltr">
+                        <span class="text-xl sm:text-2xl font-bold text-purple-300 num-font tracking-tight truncate" id="rev-month">0</span>
+                        <span class="text-xs font-bold text-purple-300/80 shrink-0">د.ع</span>
+                    </div>
                 </div>
             </div>
 
@@ -199,7 +208,7 @@
     </main>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#D4FF24] text-[#030407] font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2.5">
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#D4FF24] text-[#030407] font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2.5 whitespace-nowrap">
         <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">تم الحفظ بنجاح</span>
     </div>
 
@@ -332,9 +341,9 @@
             }
 
             updateRevenueUI() {
-                document.getElementById('rev-today').innerText = `${this.data.today.toLocaleString()} د.ع`;
-                document.getElementById('rev-yesterday').innerText = `${this.data.yesterday.toLocaleString()} د.ع`;
-                document.getElementById('rev-month').innerText = `${this.data.month.toLocaleString()} د.ع`;
+                document.getElementById('rev-today').innerText = this.data.today.toLocaleString();
+                document.getElementById('rev-yesterday').innerText = this.data.yesterday.toLocaleString();
+                document.getElementById('rev-month').innerText = this.data.month.toLocaleString();
             }
 
             renderInvoices() {
@@ -357,7 +366,7 @@
                             </div>
                             <div class="text-[11px] text-gray-400 font-semibold mt-0.5">${inv.time} - ${inv.date}</div>
                         </div>
-                        <div class="text-[#D4FF24] font-extrabold num-font text-base">
+                        <div class="text-[#D4FF24] font-extrabold num-font text-base" dir="ltr">
                             +${inv.amount.toLocaleString()} د.ع
                         </div>
                     </div>
@@ -369,7 +378,7 @@
                 const msgEl = document.getElementById('toast-msg');
                 
                 msgEl.innerText = msg;
-                toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-2.5 opacity-150 scale-100`;
+                toast.className = `fixed bottom-6 left-1/2 transform -translate-x-1/2 ${color === 'lime' ? 'bg-[#D4FF24] text-[#030407]' : 'bg-rose-500 text-white'} font-extrabold px-6 py-3.5 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center gap-2.5 opacity-100 scale-100 whitespace-nowrap`;
 
                 setTimeout(() => {
                     toast.classList.add('opacity-0', 'pointer-events-none');
